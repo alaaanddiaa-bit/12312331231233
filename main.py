@@ -4,13 +4,17 @@ import os
 import tempfile
 from openai import OpenAI
 
+# --- OpenAI client ---
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 app = FastAPI()
 
+# --- CORS (fixes browser "Failed to fetch") ---
+# IMPORTANT: allow_credentials=False when allow_origins=["*"]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # later you can restrict to your frontend domain
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -49,6 +53,14 @@ Rules:
 - Do not add information.
 - Use formal medical language suitable for an Arztbrief.
 """
+
+@app.get("/")
+def root():
+    return {"status": "ok", "service": "medical-dictation"}
+
+@app.get("/health")
+def health():
+    return {"ok": True}
 
 @app.post("/dictate")
 async def dictate(audio: UploadFile = File(...)):
