@@ -40,6 +40,7 @@ Rewrite the dictated German text into correct medical German and format it into 
 Anamnese:
 Klinische Untersuchung:
 Bildgebung:
+Diagnose:
 Therapie:
 
 Rules:
