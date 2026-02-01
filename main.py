@@ -27,6 +27,7 @@ REQUIRED_SECTIONS = [
     "Anamnese:",
     "Klinische Untersuchung:",
     "Bildgebung:",
+    "Diagnose:",
     "Therapie:",
 ]
 
